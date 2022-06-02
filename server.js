@@ -3,6 +3,10 @@ const app = express();
 const cors = require('cors');
 const db = require('./config/database');
 
+// requirements
+require("dotenv").config()
+const PORT = process.env.PORT || 5000
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 
@@ -51,6 +55,6 @@ app.get("/getfile/:image", function (req, res) {
     res.sendFile(__dirname + "/uploads/" + req.params.image);
   });
 
-app.listen(5000 , ()=> {
-    console.log('server is listening on port 5000');
+app.listen(PORT , ()=> {
+    console.log(`server is listening on port ${PORT}`);
 })
