@@ -26,10 +26,8 @@ const MedecinSchema = new mongoose.Schema({
         type : String,
         default : 'avatar.png'
     },
-    consultationn : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref:"Consultation",
-        
-    }],
+    numero : {
+        type:String
+    }
 })
 module.exports = mongoose.model("Medecin",MedecinSchema)

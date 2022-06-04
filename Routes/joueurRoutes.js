@@ -13,4 +13,5 @@ route.delete("/:id", JoueurContrller.deletejoueur);
 route.post("/login",JoueurContrller.authenticate);
 //route.get("/groupe",JoueurContrller.getjoueursbygroupeid)
 route.put("/image/:id", upload.single('avatar'),JoueurContrller.uploadavatar);
+route.put("/:id/update",JoueurContrller.updateMedecin);
 module.exports = route;

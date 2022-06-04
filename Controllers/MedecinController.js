@@ -8,7 +8,7 @@ module.exports = {
   createMdecin: async (req, res) => {
     const emailRegex =
       /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-    const { nom, email, motDepass, specialite,prenom } = req.body;
+    const { nom, email, motDepass, specialite,prenom,numero} = req.body;
     const valid = emailRegex.test(email);
     if (!email || !nom || !motDepass || !specialite || !valid ||!prenom) {
       return res.status(500).json({ message: "verifier vos champs" });
@@ -30,6 +30,7 @@ module.exports = {
         email,
         specialite,
         prenom,
+        numero,
         motDepass: hash,
       });
 

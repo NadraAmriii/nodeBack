@@ -8,7 +8,7 @@ module.exports = {
   createJoueur: async (req, res) => {
     const emailRegex =
       /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-    const { nom, email, motDepass, groupe } = req.body;
+    const { nom, email, motDepass, groupe,prenom } = req.body;
     const valid = emailRegex.test(email);
     if (!email || !nom || !motDepass || !groupe || !valid) {
       return res.status(500).json({ message: "Please enter all fields" });
@@ -29,6 +29,7 @@ module.exports = {
         nom,
         email,
         groupe,
+        prenom,
         motDepass: hash,
       });
       const savedUser = await newUser.save();
@@ -268,6 +269,28 @@ module.exports = {
               data: nuser,
             });
           }
+        });
+      }
+    });
+  },
+  updateMedecin: (req, res) => {
+    const hash = bcrypt.hashSync(req.body.motDepass, 10);
+    let data = {
+      motDepass: req.body.motDepass =hash,
+    };
+
+    Joueur.findOneAndUpdate({ _id: req.params.id }, data, (err, joueur) => {
+      // console.log(req.params.id);
+      // console.log(mongoose.Types.ObjectId.isValid(req.params.id))
+      if (err) {
+        res.status(500).json({
+          message: "joueur non modifie" + err,
+          data: null,
+        });
+      } else {
+        res.status(200).json({
+          message: "joueur modifie",
+          data: joueur,
         });
       }
     });
