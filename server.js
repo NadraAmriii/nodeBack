@@ -29,32 +29,32 @@ const userRouter = require('./Routes/UserRoute')
 const consultationRouter = require('./Routes/ConsultationRouter')
 const ordonnanceRouter = require('./Routes/OrdonnanceRouter')
 const ExamRouter = require('./Routes/ExamRouter')
-const ResumeRouter = require ('./Routes/ResumeRouter')
-//parent routes
-app.use("/groupes",groupeRouter);
-app.use("/joueurs",joueurRouter);
-app.use("/medecins",medecinRouter);
-app.use("/groupeJou",groupeJouRouter);
-app.use("/admins",adminRouter)
-app.use("/users",userRouter)
-app.use("/consultations",consultationRouter)
-app.use("/ordonnances",ordonnanceRouter)
-app.use("/exams",ExamRouter)
-app.use("/resumes",ResumeRouter)
+const ResumeRouter = require('./Routes/ResumeRouter')
+    //parent routes
+app.use("/groupes", groupeRouter);
+app.use("/joueurs", joueurRouter);
+app.use("/medecins", medecinRouter);
+app.use("/groupeJou", groupeJouRouter);
+app.use("/admins", adminRouter)
+app.use("/users", userRouter)
+app.use("/consultations", consultationRouter)
+app.use("/ordonnances", ordonnanceRouter)
+app.use("/exams", ExamRouter)
+app.use("/resumes", ResumeRouter)
 
-app.get('/',(req,res) =>{
+app.get('/', (req, res) => {
     res.send('hello world')
 
 })
 
-app.get('/hello/:name',(req,res) => {
-    res.send('hello ' +req.params.name)
+app.get('/hello/:name', (req, res) => {
+    res.send('hello ' + req.params.name)
 })
 
-app.get("/getfile/:image", function (req, res) {
+app.get("/getfile/:image", function(req, res) {
     res.sendFile(__dirname + "/uploads/" + req.params.image);
-  });
+});
 
-app.listen(PORT , ()=> {
+app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
 })
