@@ -149,4 +149,27 @@ module.exports={
       }
     });
   },
+
+  updateMedecin: (req, res) => {
+    const hash = bcrypt.hashSync(req.body.motDepass, 10);
+    let data = {
+      motDepass: req.body.motDepass =hash,
+    };
+
+    Admin.findOneAndUpdate({ _id: req.params.id }, data, (err, admin) => {
+      // console.log(req.params.id);
+      // console.log(mongoose.Types.ObjectId.isValid(req.params.id))
+      if (err) {
+        res.status(500).json({
+          message: "Admin non modifie" + err,
+          data: null,
+        });
+      } else {
+        res.status(200).json({
+          message: "admin modifie",
+          data: admin,
+        });
+      }
+    });
+  },
 }

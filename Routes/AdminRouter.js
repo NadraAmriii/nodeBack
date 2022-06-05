@@ -11,6 +11,7 @@ route.get("/",AdminController.getAlladmins);
 route.get("/:id",AdminController.getMedecinBYID);
 route.put("/:id",AdminController.updateMedecin);
 route.put("/image/:id", upload.single('avatar'),AdminController.uploadavatar);
+route.put("/:id/update",AdminController.updateMedecin)
 /*
 route.post("/",GroupeController.AjouterUnjou);
 route.get("/:id",GroupeController.getGroupBYID);
